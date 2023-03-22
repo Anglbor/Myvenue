@@ -1,0 +1,39 @@
+{% extends 'meet_app/base.html' %}
+{%block content%}
+
+
+<h1>Meetings</h1>
+</br>
+</br>
+{% for meet in meet_list%}
+<div class="card">
+  <div class="card-header">
+    {{meet}}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Venue: {{meet.venue}}</h5>
+    <p class="card-text">
+         <ul>
+      <li>Name :{{meet.name}}</li>
+      <li>Date: {{meet.meet_date}}</li>
+      <li>Director: {{meet.director}}</li>
+      <li>Description: {{meet.description}}</li>
+      <li> Guests: </br>
+          {% for user in meet.guests.all%}
+          {{user}}</br>
+      </li>
+          {% endfor %}
+ </ul>
+
+    </p>
+    <a href="{% url 'update_meet' meet.id %}" class="btn btn-outline-primary btn-sm">Update meeting</a>
+    <a href="{% url 'delete_meet' meet.id %}" class="btn btn-outline-danger btn-sm">Delete meeting</a>
+  </div>
+</div>
+
+
+</br>
+{% endfor %}
+
+{% endblock%}
+

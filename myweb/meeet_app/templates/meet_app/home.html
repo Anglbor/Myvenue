@@ -1,0 +1,16 @@
+{% extends 'meet_app/base.html' %}
+{%block content%}
+
+
+<center>
+
+<h1>Hello {{ name }} events {{month}} {{ year}}</h1>
+
+{{ calen| safe}} </br></br>
+
+
+Year right now {{year_now}} </br></br>
+    Time {{ time}}
+</center>
+
+{% endblock%}

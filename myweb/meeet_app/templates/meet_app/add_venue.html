@@ -1,0 +1,24 @@
+{% extends 'meet_app/base.html' %}
+{%block content%}
+
+<center>
+
+<h1>Add venue</h1>
+
+    {% if submitted %}
+    Venue added to database!
+
+
+    {% else %}
+        <form action="" method="post">
+    <br/>
+    {% csrf_token %}
+    {{form.as_p}}
+
+    {% endif %}
+
+<!--<input type="submit" value="Submit" class="btn btn-success">-->
+        </form>
+</center>
+
+{% endblock%}

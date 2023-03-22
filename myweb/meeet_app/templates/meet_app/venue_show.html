@@ -1,0 +1,24 @@
+{% extends 'meet_app/base.html' %}
+{%block content%}
+<center>
+<div class="card">
+  <div class="card-header">
+    Venue
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Venue:{{venue}}</h5>
+    <p class="card-text">
+         <ul>
+      <li>Venue name:{{venue.name}</li>
+      <li>Address: {{venue.address}}</li>
+      <li>Zip-code: {{venue.zip_code}}</li>
+      <li>Email address: {{venue.email}}</li>
+      <li>Phone: {{venue.phone}}</li>
+      <li>Webside: <a href ="{{venue.web}}">{{venue.web}}</a><br/></li>
+
+ </ul>
+
+
+</center>
+
+{% endblock%}
