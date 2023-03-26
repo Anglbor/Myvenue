@@ -18,10 +18,8 @@ from reportlab.lib.pagesizes import letter
 from django.core.paginator import Paginator
 
 
-
-
 def venue_pdf(request):
-    #create bytestream buffer
+    # create bytestream buffer
     bufr = io.BytesIO()
     # create canvas
     can = canvas.Canvas(bufr, pagesize=letter, bottomup=0)
@@ -37,10 +35,9 @@ def venue_pdf(request):
     # for line in lines:
     #     textobject.textLine(line)
 
-
     # venues from model
     venues = Venue.objects.all()
-    lines =[]
+    lines = []
     for venue in venues:
         lines.append(f'Venue name : {venue.name}')
         lines.append(f'Venue address : {venue.address}')
@@ -60,7 +57,6 @@ def venue_pdf(request):
     bufr.seek(0)
 
     return FileResponse(bufr, as_attachment=True, filename='venue.pdf')
-
 
 
 def venue_csv(request):
@@ -88,8 +84,7 @@ def venue_tekst(request):
     # lines = ['klkkok \n'
     #          'jkllp']
 
-    lines =[]
-
+    lines = []
     venues = Venue.objects.all()
     for venue in venues:
         lines.append(f'{venue.name}\n{venue.address}\n{venue.zip_code}\n{venue.phone}\n{venue.web}\n{venue.email}\n\n\n\n')
@@ -103,6 +98,7 @@ def delete_meet(request, meet_id):
     meet.delete()
     return redirect('meets')
 
+
 def update_meet(request, meet_id):
     meet = Meet.objects.get(pk=meet_id)
     form = MeetForm(request.POST or None, instance=meet)
@@ -113,6 +109,7 @@ def update_meet(request, meet_id):
     ctx = {'meet': meet,
            'form': form}
     return render(request, 'meet_app/update_meet.html', ctx)
+
 
 def add_meet(request):
     submitted = False
@@ -146,6 +143,7 @@ def update_venue(request, venue_id):
            'form': form}
     return render(request, 'meet_app/update_venue.html', ctx)
 
+
 def search_venues(request):
     if request.method == 'POST':
         searched_venue = request.POST['searched_venue']
@@ -155,10 +153,12 @@ def search_venues(request):
     else:
         return render(request, 'meet_app/search_venues.html')
 
+
 def venue_show(request, venue_id):
     venue = Venue.objects.get(pk=venue_id)
     ctx = {'venue': venue}
     return render(request, 'meet_app/venue_show.html', ctx)
+
 
 def venues_all(request):
     # venue_list = Venue.objects.all().order_by('name')
@@ -170,9 +170,11 @@ def venues_all(request):
     pg = Paginator(Venue.objects.all(), 2)
     page = request.GET.get('page')
     venues = pg.get_page(page)
+    numbrs = 'a' * venues.paginator.num_pages
 
     ctx = {'venue_list': venue_list,
-           'venues': venues}
+           'venues': venues,
+           'numbrs': numbrs}
     return render(request, 'meet_app/venue_list.html', ctx)
 
 
@@ -198,17 +200,17 @@ def meets_all(request):
 
 
 def home(request, month=datetime.now().strftime('%B'), year=datetime.now().year):
-    name ='Anna'
+    name = 'Anna'
     month = month.title()
     # convert string to number
     month_number = list(calendar.month_name).index(month)
-    month_number =int(month_number)
+    month_number = int(month_number)
 
     calen = HTMLCalendar().formatmonth(year, month_number)
 
     now = datetime.now()
     year_now = now.year
-    time =now.strftime('%I:%M:%p')
+    time = now.strftime('%I:%M:%p')
 
     return render(request, 'meet_app/home.html',
                   {'month': month,

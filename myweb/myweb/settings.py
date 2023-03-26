@@ -27,7 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'meeet_app'
+    'meeet_app',
+
 ]
 
 MIDDLEWARE = [
