@@ -8,32 +8,81 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'home' '2022' 'April' %}">April</a>
+          <a class="nav-link" href="{% url 'home' '2022' 'April' %}">Calender</a>
         </li>
 
-         <li class="nav-item">
-          <a class="nav-link" href="{% url 'meets' %}">Meetings</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Meetings
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'add_meet' %}">Add Meeting</a></li>
+            <li><a class="dropdown-item" href="{% url 'meets' %}">All Meetings</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
         </li>
 
-          <li class="nav-item">
-          <a class="nav-link" href="{% url 'add_meet' %}">Add Meeting</a>
+<!--         <li class="nav-item">-->
+<!--          <a class="nav-link" href="{% url 'meets' %}">Meetings</a>-->
+<!--        </li>-->
+<!--          <li class="nav-item">-->
+<!--          <a class="nav-link" href="{% url 'add_meet' %}">Add Meeting</a>-->
+<!--        </li>-->
+
+          </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Venues
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'add_venue' %}">Add Venue</a></li>
+            <li><a class="dropdown-item" href="{% url 'venues_all' %}">All Venues</a></li>
+          </ul>
         </li>
 
-         <li class="nav-item">
-          <a class="nav-link" href="{% url 'add_venue' %}">Add Venue</a>
+<!--         <li class="nav-item">-->
+<!--          <a class="nav-link" href="{% url 'add_venue' %}">Add Venue</a>-->
+<!--        </li>-->
+<!--         <li class="nav-item">-->
+<!--          <a class="nav-link" href="{% url 'venues_all' %}">Venues</a>-->
+<!--        </li>-->
+
         </li>
-         <li class="nav-item">
-          <a class="nav-link" href="{% url 'venues_all' %}">Venues</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdowns
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'venue_tekst' %}">Venues text file</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'venue_csv' %}">Venues csv</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'venue_pdf' %}">Venues pdf</a></li>
+          </ul>
         </li>
+
+<!--          <li class="nav-item">-->
+<!--          <a class="nav-link" href="{% url 'venue_tekst' %}">Venues text file</a>-->
+<!--        </li>-->
+<!--          <li class="nav-item">-->
+<!--          <a class="nav-link" href="{% url 'venue_csv' %}">Venues csv</a>-->
+<!--        </li>-->
+<!--         <li class="nav-item">-->
+<!--          <a class="nav-link" href="{% url 'venue_pdf' %}">Venues pdf</a>-->
+<!--        </li>-->
+
+          {% if user.is_authenticated %}
           <li class="nav-item">
-          <a class="nav-link" href="{% url 'venue_tekst' %}">Venues text file</a>
-        </li>
+          <a class="nav-link" href="{% url 'logout_user' %}">Logout</a>
+          </li>
+
+          {% else %}
           <li class="nav-item">
-          <a class="nav-link" href="{% url 'venue_csv' %}">Venues csv</a>
-        </li>
-         <li class="nav-item">
-          <a class="nav-link" href="{% url 'venue_pdf' %}">Venues pdf</a>
-        </li>
+          <a class="nav-link" href="{% url 'login_user' %}">Login</a>
+          </li>
+          {% endif %}
 
 
       </ul>
